@@ -1,0 +1,24 @@
+.content{
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+
+.img{
+    width: 270px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.div_infos{
+    margin: 3%;
+}
+
+.p{
+    margin-bottom: 2px;
+    color: #9c9c9c;
+    font-weight: lighter;
+}
+
+.h4{
+    font-weight: medium;
+}

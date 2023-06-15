@@ -1,0 +1,58 @@
+.div{
+    display: flex;
+    width: 90%;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px #d9d9d9 solid;
+    margin: 2%;
+    padding: 2%;
+}
+
+.content_1{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content_2{
+    width: 50%;
+}
+
+.img{
+    width: 450px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.p{
+    font-weight: lighter;
+}
+
+.table{
+    border: 1px #d9d9d9 solid;
+    width: 70%;
+    margin: 3%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 10px;
+
+}
+
+td{
+    padding: 0% 3% 0 3%;
+}
+
+.th{
+    text-align: center;
+    background-color: #d9d9d9;
+    padding: 3px;
+}
+
+.td_button{
+    text-align: end;
+}
+
+.td_lote{
+    font-weight: bold;
+}
