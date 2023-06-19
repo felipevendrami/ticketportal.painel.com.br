@@ -5,7 +5,10 @@
   font-family: 'Rubik', sans-serif;
 }
 
+
+
 html, body, #root{
   background-color: #efefef;
   height: 100%;
+  display: flex;
 }

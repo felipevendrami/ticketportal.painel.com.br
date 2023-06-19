@@ -1,33 +1,36 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Container from "./components/layout/Container";
-import LoginPage from "./pages/LoginPage";
-import HomePage from "./pages/HomePage";
 import Header from "./components/layout/Header";
-import Footer from "./components/layout/Footer";
-import EventPage from "./pages/EventoPage";
-import CadastroClientePage from "./pages/CadastroClientePage"
+import Navbar from "./components/layout/Navbar";
+import Container from "./components/layout/Container";
+import Painel from "./pages/Painel";
+import Vendas from "./pages/Vendas";
+import Eventos from "./pages/Eventos";
+import TipoTickets from "./pages/TipoTickets";
+import NovoEvento from "./pages/NovoEvento";
 
 function App() {
   return (
     <Router>
-      <Header />
+      <Navbar />
       <Switch>
-        <Container customClass="min-height">
+        <Container>
           <Route exact path="/">
-            <HomePage />
+            <Painel />
           </Route>
-          <Route exact path="/login">
-            <LoginPage />
+          <Route exact path="/vendas">
+            <Vendas />
           </Route>
-          <Route exact path="/evento">
-            <EventPage />
+          <Route exact path="/eventos">
+            <Eventos />
           </Route>
-          <Route exact path="/cadastro">
-            <CadastroClientePage />
+          <Route exact path="/eventos/novo_evento">
+            <NovoEvento />
+          </Route>
+          <Route exact path="/eventos/tipo_ticket">
+            <TipoTickets />
           </Route>
         </Container>
       </Switch>
-      <Footer />
     </Router>
   );
 }

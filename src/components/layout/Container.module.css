@@ -1,13 +1,10 @@
 .container {
-    width: 1200px;
-    display: flex;
-    justify-content: space-between;
-    margin: 0 auto;
-    flex-wrap: wrap;
-}
-
-.min-height {
-    min-height: 75%;
+    width: 100%;
+    margin: 2%;
+    padding: 1%;
+    background-color: #fff;
+    border-radius: 10px;
+    border: 1px #d9d9d9 solid;
 }
 
 .start {
@@ -15,6 +12,7 @@
 }
 
 .column {
+    display: flex;
     flex-direction: column;
     justify-content: flex-start;
 }
