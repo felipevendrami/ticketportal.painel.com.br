@@ -21,7 +21,7 @@ function App() {
             <Vendas />
           </Route>
           <Route exact path="/eventos">
-            <Eventos />
+            <Eventos nome="Felipe Eventos"/>
           </Route>
           <Route exact path="/eventos/novo_evento">
             <NovoEvento />
