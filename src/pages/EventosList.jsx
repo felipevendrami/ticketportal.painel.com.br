@@ -8,15 +8,15 @@ function EventosList() {
     <>
       <h3>Seus Eventos</h3>
       <hr />
-      <div className={styles.div_acoes}>
+      <div>
         <Link to="/eventos/novo_evento">
           <Button variant="success">Novo Evento</Button>{" "}
         </Link>
         <Button variant="primary">Alterar Evento</Button>{" "}
         <Button variant="info">Visualizar Evento</Button>{" "}
         <Button variant="danger">Excluir Evento</Button>{" "}
-        <Link to="/eventos/tipo_ticket">
-          <Button variant="secondary">Tickets</Button>{" "}
+        <Link to="/eventos/tipo_ingresso">
+          <Button variant="secondary">Ingressos</Button>{" "}
         </Link>
       </div>
       <hr />

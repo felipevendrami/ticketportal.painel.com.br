@@ -6,6 +6,8 @@ import VendasList from "./pages/VendasList";
 import EventosList from "./pages/EventosList";
 import TipoIngressoList from "./pages/TipoIngressoList";
 import NovoEvento from "./pages/NovoEvento";
+import NovoTipoIngresso from "./pages/NovoTipoIngresso";
+import Pedido from "./pages/Pedido";
 
 function App() {
   return (
@@ -25,8 +27,14 @@ function App() {
           <Route exact path="/eventos/novo_evento">
             <NovoEvento />
           </Route>
-          <Route exact path="/eventos/tipo_ticket">
+          <Route exact path="/eventos/tipo_ingresso">
             <TipoIngressoList />
+          </Route>
+          <Route exact path="/eventos/tipo_ingresso/novo_tipo_ingresso">
+            <NovoTipoIngresso />
+          </Route>
+          <Route exact path="/vendas/pedido">
+            <Pedido />
           </Route>
         </Container>
       </Switch>
