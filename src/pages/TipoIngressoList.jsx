@@ -1,4 +1,4 @@
-import styles from "./TipoTickets.module.css";
+import styles from "./TipoIngressoList.module.css";
 import Container from "../components/layout/Container";
 
 function TipoIngressoList(){

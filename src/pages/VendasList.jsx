@@ -1,4 +1,4 @@
-import styles from "./Vendas.module.css";
+import styles from "./VendasList.module.css";
 import Container from "../components/layout/Container";
 
 function VendasList() {
