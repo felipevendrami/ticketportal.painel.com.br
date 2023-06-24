@@ -2,9 +2,9 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
 import Container from "./components/layout/Container";
 import Painel from "./pages/Painel";
-import Vendas from "./pages/Vendas";
-import Eventos from "./pages/Eventos";
-import TipoTickets from "./pages/TipoTickets";
+import VendasList from "./pages/VendasList";
+import EventosList from "./pages/EventosList";
+import TipoIngressoList from "./pages/TipoIngressoList";
 import NovoEvento from "./pages/NovoEvento";
 
 function App() {
@@ -17,16 +17,16 @@ function App() {
             <Painel />
           </Route>
           <Route exact path="/vendas">
-            <Vendas />
+            <VendasList />
           </Route>
           <Route exact path="/eventos">
-            <Eventos nome="Felipe Eventos"/>
+            <EventosList />
           </Route>
           <Route exact path="/eventos/novo_evento">
             <NovoEvento />
           </Route>
           <Route exact path="/eventos/tipo_ticket">
-            <TipoTickets />
+            <TipoIngressoList />
           </Route>
         </Container>
       </Switch>
