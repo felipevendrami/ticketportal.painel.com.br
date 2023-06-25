@@ -8,13 +8,17 @@ import TipoIngressoList from "./pages/TipoIngressoList";
 import NovoEvento from "./pages/NovoEvento";
 import NovoTipoIngresso from "./pages/NovoTipoIngresso";
 import Pedido from "./pages/Pedido";
+import LoginPage from "./pages/LoginPage"; // Importação da página de login
 
 function App() {
   return (
     <Router>
       <Navbar />
       <Switch>
-        <Container>
+        <Container>        
+        <Route exact path="/login">
+          <LoginPage />
+        </Route>
           <Route exact path="/">
             <Painel />
           </Route>

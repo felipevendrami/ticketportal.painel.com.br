@@ -7,22 +7,55 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 
 function NovoTipoIngresso() {
-
-  const handlerSubmit = async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const TipoIngresso = {
+    const tipoIngresso = {
       evento: evento,
       titulo: titulo,
       lote: lote,
       qntIngressos: qntIngressos,
       valorBase: valorBase,
       desconto: desconto,
-    }
+    };
 
-    console.log(TipoIngresso);
-    //registrarTipoIngressoAPI(TipoIngresso);
+    /* EXEMPLO DE ENVIO CORRETO:
+      {
+    "evento": {
+      "idEvento": 1,
+      "usuario": {
+        "idUsuario": 1,
+        "nome": "Usuario 1",
+        "documento": null,
+        "username": null,
+        "telefone": null,
+        "endereco": null,
+        "tipo": null,
+        "password": null
+      },
+      "dataEvento": null,
+      "titulo": null,
+      "descricao": null,
+      "local": null,
+      "cidade": null,
+      "uf": null,
+      "imagemPath": null
+    },
+    "titulo": "Lote Promocional",
+    "valorNormal": 50.00,
+    "quantidade": 10,
+    "desconto": null,
+    "loteNumero": 1
   }
+      */
+
+    try {
+      const response = await registrarTipoIngressoAPI(tipoIngresso);
+      console.log(response.data); // Assuming the API response contains the newly created TipoIngresso data
+    } catch (error) {
+      console.log("Error:", error);
+    }
+  };
 
   const [evento, setEvento] = useState("");
   const [titulo, setTitulo] = useState("");
@@ -35,15 +68,15 @@ function NovoTipoIngresso() {
     <>
       <h3>Novo Lote</h3>
       <hr />
-      <Form onSubmit={handlerSubmit}>
-      <Row className="mb-3">
+      <Form onSubmit={handleSubmit}>
+        <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridEvento">
             <Form.Label>Evento:</Form.Label>
             <Form.Control
               value={evento}
               id="evento"
               type="text"
-              onChange={e => setEvento(e.target.value)}
+              onChange={(e) => setEvento(e.target.value)}
               required
               disabled
             />
@@ -51,12 +84,12 @@ function NovoTipoIngresso() {
         </Row>
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridTituloIngresso">
-            <Form.Label>Titulo Ingresso:</Form.Label>
+            <Form.Label>Título Ingresso:</Form.Label>
             <Form.Control
               value={titulo}
               id="titulo_ingresso"
               type="text"
-              onChange={e => setTitulo(e.target.value)}
+              onChange={(e) => setTitulo(e.target.value)}
               minLength={3}
               maxLength={100}
               required
@@ -68,7 +101,7 @@ function NovoTipoIngresso() {
               value={lote}
               id="num_lote"
               type="number"
-              onChange={e => setLote(e.target.value)}
+              onChange={(e) => setLote(e.target.value)}
               required
             />
           </Form.Group>
@@ -78,7 +111,7 @@ function NovoTipoIngresso() {
               value={qntIngressos}
               id="qnt_ingressos"
               type="number"
-              onChange={e => setQntIngressos(e.target.value)}
+              onChange={(e) => setQntIngressos(e.target.value)}
               required
             />
           </Form.Group>
@@ -90,7 +123,7 @@ function NovoTipoIngresso() {
               value={valorBase}
               id="valor"
               type="text"
-              onChange={e => setValorBase(e.target.value)}
+              onChange={(e) => setValorBase(e.target.value)}
               placeholder="Insira valor monetário"
               required
             />
@@ -101,7 +134,7 @@ function NovoTipoIngresso() {
               value={desconto}
               id="desconto"
               type="number"
-              onChange={e => setDesconto(e.target.value)}
+              onChange={(e) => setDesconto(e.target.value)}
               placeholder="Insira percentual de desconto"
               required
             />

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import React, { useState } from "react";
 import { registrarEventoAPI } from "../Api/Service";
 import Button from "react-bootstrap/Button";
@@ -7,26 +7,36 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 
 function NovoEvento() {
-  
+  const history = useHistory();
+
   const handlerSubmit = async (event) => {
     event.preventDefault();
 
+    const token = localStorage.getItem("token");
+    console.log("Token:", token);
+
     const Evento = {
       titulo: titulo,
-      capaEvento: capaEvento,
       descricao: descricao,
-      data: data + " " + horario,
-      local: {
-        local: local,
-        cidade: cidade,
-        uf: uf,
-      },
+      local: local,
+      cidade: cidade,
+      uf: uf,
+      dataEvento: data + "T" + horario + ":00",
+      imagemPath: capaEvento
     };
+    
 
-    registrarEventoAPI(Evento);
+    registrarEventoAPI(Evento, token)
+      .then(() => {
+        // Lógica adicional após o registro do evento, se necessário
+        history.push("/eventos");
+      })
+      .catch((error) => {
+        // Tratar erros na criação do evento
+        console.error(error);
+      });
   };
 
-  // States
   const [titulo, setTitulo] = useState("");
   const [capaEvento, setCapaEvento] = useState("");
   const [descricao, setDescricao] = useState("");
@@ -48,7 +58,7 @@ function NovoEvento() {
               value={titulo}
               id="titulo"
               type="text"
-              onChange={e => setTitulo(e.target.value)}
+              onChange={(e) => setTitulo(e.target.value)}
               minLength={5}
               maxLength={100}
               required
@@ -56,7 +66,11 @@ function NovoEvento() {
           </Form.Group>
           <Form.Group as={Col} controlId="formFile" className="mb-3">
             <Form.Label>Capa do Evento:</Form.Label>
-            <Form.Control value={capaEvento} id="capaEvento" type="file" />
+            <Form.Control
+              value={capaEvento}
+              id="capaEvento"
+              type="file"
+            />
           </Form.Group>
         </Row>
         <Row className="mb-3">
@@ -67,7 +81,7 @@ function NovoEvento() {
               id="descricao"
               rows={6}
               as="textarea"
-              onChange={e => setDescricao(e.target.value)}
+              onChange={(e) => setDescricao(e.target.value)}
               minLength={15}
               maxLength={250}
               required
@@ -81,7 +95,7 @@ function NovoEvento() {
               value={local}
               id="local"
               type="text"
-              onChange={e => setLocal(e.target.value)}
+              onChange={(e) => setLocal(e.target.value)}
               minLength={5}
               required
             />
@@ -92,7 +106,7 @@ function NovoEvento() {
               value={data}
               id="data"
               type="date"
-              onChange={e => setData(e.target.value)}
+              onChange={(e) => setData(e.target.value)}
               required
             />
           </Form.Group>
@@ -104,7 +118,7 @@ function NovoEvento() {
               value={cidade}
               id="cidade"
               type="text"
-              onChange={e => setCidade(e.target.value)}
+              onChange={(e) => setCidade(e.target.value)}
               minLength={5}
               required
             />
@@ -115,7 +129,7 @@ function NovoEvento() {
               value={uf}
               id="uf"
               type="text"
-              onChange={e => setUf(e.target.value)}
+              onChange={(e) => setUf(e.target.value)}
               minLength={2}
               maxLength={2}
               required
@@ -127,7 +141,7 @@ function NovoEvento() {
               value={horario}
               id="horario"
               type="time"
-              onChange={e => setHorario(e.target.value)}
+              onChange={(e) => setHorario(e.target.value)}
               required
             />
           </Form.Group>

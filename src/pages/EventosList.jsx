@@ -1,24 +1,33 @@
-import { Link } from "react-router-dom";
-import {useEffect, useState } from "react";
-import { retornaTodosEventosAPI } from "../Api/Service";
+import { Link, useHistory } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { getTodosEventosAPI } from "../Api/Service";
 import Button from "react-bootstrap/Button";
 import styles from "./EventosList.module.css";
 import GridEvento from "../components/grid/GridEvento.tsx";
 
 function EventosList() {
-
   const [eventos, setEventos] = useState([]);
+  const history = useHistory();
 
-  function atualizaListaEventos(){
-    retornaTodosEventosAPI()
-    .then((response) => {
-      setEventos(response.data);
-    })
-    .catch((erro) => console.log(erro));
-  }
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      history.push("/login");
+      return;
+    }
 
-  useEffect(() => atualizaListaEventos(),[eventos]);
-  
+    function atualizaListaEventos() {
+      getTodosEventosAPI()
+        .then((response) => {
+          setEventos(response.data);
+          console.log(eventos);
+        })
+        .catch((erro) => console.log(erro));
+    }
+
+    atualizaListaEventos();
+  }, []); 
+
   return (
     <>
       <h3>Seus Eventos</h3>
@@ -36,7 +45,7 @@ function EventosList() {
       </div>
       <hr />
       <div>
-        <GridEvento eventos={eventos}/>
+        <GridEvento eventos={eventos} />
       </div>
     </>
   );

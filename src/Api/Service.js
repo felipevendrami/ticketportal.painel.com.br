@@ -36,13 +36,13 @@ export const getItemCompraAPI = (id) => clientApi.get(`/itens-compra/${id}`);
 
 export const getTodosItensCompraAPI = () => clientApi.get(`/itens-compra`);
 
-export const registrarTipoIngressoAPI = (tipoIngresso) => clientApi.post(`/tipos-ingresso`, tipoIngresso);
+export const registrarTipoIngressoAPI = (tipoIngresso) => clientApi.post(`/tipo-ingressos`, tipoIngresso);
 
-export const deletarTipoIngressoAPI = (id) => clientApi.delete(`/tipos-ingresso/${id}`);
+export const deletarTipoIngressoAPI = (id) => clientApi.delete(`/tipo-ingressos/${id}`);
 
-export const getTipoIngressoAPI = (id) => clientApi.get(`/tipos-ingresso/${id}`);
+export const getTipoIngressoAPI = (id) => clientApi.get(`/tipo-ingressos/${id}`);
 
-export const getTodosTiposIngressoAPI = () => clientApi.get(`/tipos-ingresso`);
+export const getTodosTiposIngressoAPI = () => clientApi.get(`/tipo-ingressos`);
 
 export const registrarIngressoAPI = (ingresso) => clientApi.post(`/ingressos`, ingresso);
 

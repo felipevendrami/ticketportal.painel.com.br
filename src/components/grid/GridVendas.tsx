@@ -1,10 +1,12 @@
 import * as React from "react";
+import { useEffect, useState } from "react";
 import {
   DataGrid,
   GridColDef,
   GridRowsProp,
   GridValueGetterParams,
 } from "@mui/x-data-grid";
+import { getTodasComprasAPI } from "../../Api/Service";
 
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID", width: 10 },
@@ -14,31 +16,31 @@ const columns: GridColDef[] = [
   { field: "situacao", headerName: "Situação", width: 200 },
 ];
 
-const rows: GridRowsProp = [
-  {
-    id: "1",
-    cliente: "Fulano de Tal Teste",
-    data: "20/08/2022 14:55",
-    valor: "150,00",
-    situacao: "Pagamento Confirmado",
-  },
-];
+function GridVendas() {
+  const [rows, setRows] = useState<GridRowsProp>([]);
 
-function GridEvento() {
+  useEffect(() => {
+    getTodasComprasAPI()
+      .then((response) => {
+        const data = response.data.map((compra, index) => ({
+          id: compra.id || index, 
+          cliente: compra.cliente,
+          data: compra.data,
+          valor: compra.valor,
+          situacao: compra.situacao,
+        }));
+        setRows(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   return (
-    <div style={{height: '100%', width: '100%'}}>
-      <DataGrid 
-        rows={rows} 
-        columns={columns}
-        checkboxSelection
-        initialState={{
-            pagination: {
-                paginationModel: { pageSize: 6, page: 1 },
-            }
-        }}
-        />
+    <div style={{ height: "100%", width: "100%" }}>
+      <DataGrid rows={rows} columns={columns} checkboxSelection />
     </div>
   );
 }
 
-export default GridEvento;
+export default GridVendas;
