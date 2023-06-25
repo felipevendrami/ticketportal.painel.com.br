@@ -8,17 +8,23 @@ import TipoIngressoList from "./pages/TipoIngressoList";
 import NovoEvento from "./pages/NovoEvento";
 import NovoTipoIngresso from "./pages/NovoTipoIngresso";
 import Pedido from "./pages/Pedido";
-import LoginPage from "./pages/LoginPage"; // Importação da página de login
+import LoginPage from "./pages/LoginPage"; 
+import EventoDetails from "./pages/EventoDetails";
+import EventoEditar from "./pages/EventoEditar";  
+import CadastroPage from "./pages/CadastroPage";  
 
 function App() {
   return (
     <Router>
       <Navbar />
       <Switch>
-        <Container>        
-        <Route exact path="/login">
-          <LoginPage />
-        </Route>
+        <Container>
+          <Route exact path="/login">
+            <LoginPage />
+          </Route>
+          <Route exact path="/logon">
+            <CadastroPage />
+          </Route>
           <Route exact path="/">
             <Painel />
           </Route>
@@ -40,6 +46,12 @@ function App() {
           <Route exact path="/vendas/pedido">
             <Pedido />
           </Route>
+          <Route exact path="/eventos/:id">
+            <EventoDetails />
+          </Route>
+          <Route exact path="/eventos/:id/editar">
+            <EventoEditar />
+          </Route>
         </Container>
       </Switch>
     </Router>
@@ -47,3 +59,4 @@ function App() {
 }
 
 export default App;
+
