@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import styles from "./VendasList.module.css";
-import Grid from "../components/layout/Grid.tsx";
 import Button from "react-bootstrap/Button";
+import GridVendas from "../components/grid/GridVendas.tsx"
+import styles from "./VendasList.module.css";
 
 function VendasList() {
   return (
@@ -15,7 +15,7 @@ function VendasList() {
       </div>
       <hr />
       <div>
-        <Grid />
+        <GridVendas />
       </div>
     </>
   );

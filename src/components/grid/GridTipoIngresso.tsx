@@ -8,23 +8,25 @@ import {
 
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID", width: 10 },
-  { field: "evento", headerName: "Evento", width: 275 },
-  { field: "local", headerName: "Local", width: 275 },
-  { field: "data", headerName: "Data", width: 150 },
-  { field: "lotes", headerName: "Lotes", width: 10 },
+  { field: "evento", headerName: "Evento", width: 250 },
+  { field: "titulo", headerName: "Titulo", width: 250 },
+  { field: "valor", headerName: "Valor Total", width: 100 },
+  { field: "qnt_ingressos", headerName: "Qnt. Ingressos", width: 110 },
+  { field: "num_lote", headerName: "Núm. Lote", width: 110 },
 ];
 
 const rows: GridRowsProp = [
   {
-    id: 1,
+    id: "1",
     evento: "FarolNegro",
-    local: "TortugasBar - Rio do Sul / SC",
-    data: "31/12/2023",
-    lotes: "1",
+    titulo: "Lote Promocional",
+    valor: "50,00",
+    qnt_ingressos: "10",
+    num_lote: "1",
   },
 ];
 
-function Grid() {
+function GridEvento() {
   return (
     <div style={{height: '100%', width: '100%'}}>
       <DataGrid 
@@ -42,4 +44,4 @@ function Grid() {
   );
 }
 
-export default Grid;
+export default GridEvento;

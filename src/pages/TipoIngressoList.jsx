@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import styles from "./TipoIngressoList.module.css";
-import Grid from "../components/layout/Grid.tsx";
 import Button from "react-bootstrap/Button";
+import GridTipoIngresso from "../components/grid/GridTipoIngresso.tsx"
+import styles from "./TipoIngressoList.module.css";
 
 function TipoIngressoList() {
   return (
@@ -18,7 +18,7 @@ function TipoIngressoList() {
       </div>
       <hr />
       <div>
-        <Grid />
+        <GridTipoIngresso />
       </div>
     </>
   );
