@@ -6,7 +6,7 @@ import {
   GridValueGetterParams,
 } from "@mui/x-data-grid";
 
-function GridEvento({ eventos }) {
+function GridEvento({ eventos, onEventoSelecionado }) {
 
   const columns: GridColDef[] = [
     { field: "id", headerName: "ID", width: 10 },
@@ -22,9 +22,14 @@ function GridEvento({ eventos }) {
     data: evento.dataEvento,
   }));
 
+  const handleEventoSelection = (params) => {
+    const eventoSelecionado = params.row;
+    onEventoSelecionado(eventoSelecionado);
+  };
+
   return (
     <div style={{ height: "100%", width: "100%" }}>
-      <DataGrid columns={columns} rows={rows} />
+      <DataGrid columns={columns} rows={rows} onRowClick={handleEventoSelection} />
     </div>
   );
 }
