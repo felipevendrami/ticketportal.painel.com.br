@@ -21,9 +21,13 @@ function GridVendas({ handlePedidoSelecionado }) {
       .then((response) => {
         const data = response.data.map((compra, index) => ({
           id: compra.id || index,
-          cliente: compra.cliente,
-          data: compra.data,
-          valor: compra.valor,
+          cliente: compra.usuario.nome,
+          data: new Date(compra.dataCompra).toLocaleTimeString("en-US", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+          }),
+          valor: compra.valorTotal,
           situacao: compra.situacao,
         }));
         setRows(data);
@@ -34,7 +38,7 @@ function GridVendas({ handlePedidoSelecionado }) {
   }, []);
 
   const handleRowClick = (params) => {
-    const pedidoId = params.row.id;
+    const pedidoId = params.row.id+1;
     handlePedidoSelecionado(pedidoId);
   };
 

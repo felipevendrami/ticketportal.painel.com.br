@@ -15,14 +15,25 @@ function Pedido() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     axios
-      .get(`http://localhost:8080/pedidos/${id}`, {
+      .get(`http://localhost:8080/compras/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
       })
       .then((response) => {
-        setPedido(response.data);
+        const data = ({
+          id: response.data.id,
+          cliente: response.data.usuario.nome,
+          data: new Date(response.data.dataCompra).toLocaleTimeString("en-US", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+          }),
+          valor: response.data.valorTotal,
+          situacao: response.data.situacao,
+        });
+        setPedido(data);
       })
       .catch((error) => {
         console.error(error);
@@ -52,10 +63,9 @@ function Pedido() {
           <Form.Control
             name="data_compra"
             id="data_compra"
-            type="date"
             disabled
             readOnly
-            value={pedido?.data_compra}
+            value={pedido?.data}
           />
         </Form.Group>
         <Form.Group as={Col} controlId="formGridSituacao">
@@ -77,14 +87,16 @@ function Pedido() {
             type="text"
             disabled
             readOnly
-            value={pedido?.valor_total}
+            value={pedido?.valor}
           />
         </Form.Group>
       </Row>
       <hr />
       <h3>Ingressos:</h3>
       <div>
-        <PedidoItem />
+        <PedidoItem 
+        compraid={id}
+        />
       </div>
       <Link to="/vendas">
         <Button variant="warning">Voltar</Button>{" "}
