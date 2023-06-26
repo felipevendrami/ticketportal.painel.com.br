@@ -18,7 +18,8 @@ function EditarTipoIngresso() {
   useEffect(() => {
     const buscarTipoIngresso = async () => {
       try {
-        const response = await getTipoIngressoAPI(idTipoIngresso);
+        const token = localStorage.getItem("token");
+        const response = await getTipoIngressoAPI(idTipoIngresso, token);
         setTipoIngresso(response.data);
       } catch (error) {
         console.error(error);

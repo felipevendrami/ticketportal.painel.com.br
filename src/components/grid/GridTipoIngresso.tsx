@@ -18,13 +18,14 @@ const columns: GridColDef[] = [
   { field: "loteNumero", headerName: "Número do Lote", width: 150 },
 ];
 
-function GridEvento() {
+function GridTipoIngresso(eventoselecionado) {
   const [rows, setRows] = React.useState<GridRowsProp>([]);
 
   React.useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await getTodosTiposIngressoAPI();
+        const token = localStorage.getItem("token");
+        const response = await getTodosTiposIngressoAPI(token,eventoselecionado);
         const dataWithId = response.data.map((row, index) => ({
           id: index + 1,
           ...row,
@@ -35,6 +36,7 @@ function GridEvento() {
       }
     };
 
+
     fetchData();
   }, []);
 
@@ -44,11 +46,10 @@ function GridEvento() {
         rows={rows}
         columns={columns}
         checkboxSelection
-        pageSize={6}
         autoHeight
       />
     </div>
   );
 }
 
-export default GridEvento;
+export default GridTipoIngresso;

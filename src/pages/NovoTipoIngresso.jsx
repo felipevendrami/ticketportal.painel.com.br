@@ -10,6 +10,8 @@ function NovoTipoIngresso() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    const token = localStorage.getItem("token");
+
     const tipoIngresso = {
       evento: evento,
       titulo: titulo,
@@ -50,8 +52,7 @@ function NovoTipoIngresso() {
       */
 
     try {
-      const response = await registrarTipoIngressoAPI(tipoIngresso);
-      console.log(response.data); // Assuming the API response contains the newly created TipoIngresso data
+      const response = await registrarTipoIngressoAPI(tipoIngresso, token);
     } catch (error) {
       console.log("Error:", error);
     }
