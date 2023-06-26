@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import styles from "./EventosList.module.css";
 import GridEvento from "../components/grid/GridEvento.tsx";
+import axios from "axios";
 
 function EventosList() {
   const [eventos, setEventos] = useState([]);
@@ -15,13 +16,23 @@ function EventosList() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    console.log(token);
     if (!token) {
       history.push("/login");
       return;
     }
 
     function atualizaListaEventos() {
-      getTodosEventosAPI()
+      //getTodosEventosAPI()
+      console.log(localStorage.getItem("token"));
+      axios.create({
+        baseURL: "http://localhost:8080/",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          "Content-Type": "application/json",
+        },
+      }).get(`/eventos`)
+        
         .then((response) => {
           setEventos(response.data);
           console.log(eventos);
@@ -38,7 +49,6 @@ function EventosList() {
         .then((response) => {
           console.log("Evento deletado com sucesso!");
           setShowDeleteModal(false);
-          // Atualize a lista de eventos após a exclusão, se necessário
         })
         .catch((error) => {
           if (error.response && error.response.status === 500) {

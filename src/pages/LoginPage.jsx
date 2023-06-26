@@ -17,6 +17,7 @@ function LoginPage() {
       password
     };
 
+
     console.log("username:", username);
     console.log("Password:", password);
 
@@ -29,7 +30,8 @@ function LoginPage() {
     })
       .then((response) => response.json())
       .then((data) => {
-        localStorage.setItem("token", data.token);
+        console.log(data);
+        localStorage.setItem("token", data);
 
         // Redirecionar para a página principal 
       })
