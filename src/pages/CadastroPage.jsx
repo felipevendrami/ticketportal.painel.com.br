@@ -4,6 +4,7 @@ import styles from "./LoginPage.module.css";
 import { Form } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import Container from "../components/layout/Container";
+import { registrarUsuarioAPI } from "../Api/Service";
 
 function SignupPage() {
   const [email, setEmail] = useState("");
@@ -17,21 +18,31 @@ function SignupPage() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // Verificar se os campos obrigatórios foram preenchidos
     if (!email || !password || !name) {
       alert("Preencha os campos obrigatórios!");
       return;
     }
 
-    // Realizar o envio dos dados para o servidor ou realizar outras operações necessárias
+    const Usuario = {
+      nome: name,
+      documento: cpf,
+      username: email,
+      telefone: phone,
+      endereco: address,
+      tipo: 1,
+      password: password,
+    };
 
-    console.log("Email:", email);
-    console.log("Confirm Email:", confirmEmail);
-    console.log("Password:", password);
-    console.log("Name:", name);
-    console.log("Phone:", phone);
-    console.log("Address:", address);
-    console.log("CPF:", cpf);
+    console.log(Usuario);
+    registrarUsuarioAPI(Usuario)
+      .then(() => {
+        //redireciona a login?
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+
   };
 
   return (
@@ -47,7 +58,10 @@ function SignupPage() {
             onChange={(e) => setEmail(e.target.value)}
           />
         </Form.Group>
-        <Form.Group className={styles.form_group} controlId="formBasicConfirmEmail">
+        <Form.Group
+          className={styles.form_group}
+          controlId="formBasicConfirmEmail"
+        >
           <Form.Label>Confirmar Email:</Form.Label>
           <Form.Control
             type="email"
