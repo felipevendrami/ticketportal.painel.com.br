@@ -2,8 +2,7 @@ import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import GridTipoIngresso from "../components/grid/GridTipoIngresso.tsx"
 
-function TipoIngressoList(selecionado) {
-  console.log(selecionado);
+function TipoIngressoList() {
 
   return (
     <>
@@ -13,7 +12,7 @@ function TipoIngressoList(selecionado) {
         <Link to="/eventos/tipo_ingresso/novo_tipo_ingresso">
           <Button variant="success">Novo Lote</Button>{" "}
         </Link>
-        <Link to={`/eventos/tipo_ingresso/alterar_tipo_ingresso/${selecionado.id}`}>
+        <Link to={`/eventos/tipo_ingresso/alterar_tipo_ingresso/`}>
           <Button variant="primary">Alterar Lote</Button>{" "}
         </Link>
         <Link to="/eventos/tipo_ingresso/visualizar_tipo_ingresso">
@@ -25,8 +24,7 @@ function TipoIngressoList(selecionado) {
       </div>
       <hr />
       <div>
-        <GridTipoIngresso
-          eventoselecionado={selecionado}
+        <GridTipoIngresso 
         />
       </div>
     </>

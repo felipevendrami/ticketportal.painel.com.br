@@ -28,7 +28,6 @@ function NovoEvento() {
 
     registrarEventoAPI(Evento, token)
       .then(() => {
-        // Lógica adicional após o registro do evento, se necessário
         history.push("/eventos");
       })
       .catch((error) => {
