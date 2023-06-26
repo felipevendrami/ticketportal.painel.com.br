@@ -12,6 +12,7 @@ import LoginPage from "./pages/LoginPage";
 import EventoDetails from "./pages/EventoDetails";
 import EventoEditar from "./pages/EventoEditar";  
 import CadastroPage from "./pages/CadastroPage";  
+import TipoIngressoEditar from "./pages/TipoIngressoEditar";
 
 function App() {
   return (
@@ -42,6 +43,9 @@ function App() {
           </Route>
           <Route exact path="/eventos/tipo_ingresso/novo_tipo_ingresso">
             <NovoTipoIngresso />
+          </Route>
+          <Route exact path= "/eventos/tipo_ingress/alterar_tipo_ingresso">
+            <TipoIngressoEditar />
           </Route>
           <Route exact path="/vendas/pedido">
             <Pedido />

@@ -23,7 +23,6 @@ function EventosList() {
     }
 
     function atualizaListaEventos() {
-      //getTodosEventosAPI()
       console.log(localStorage.getItem("token"));
       axios.create({
         baseURL: "http://localhost:8080/",
@@ -44,8 +43,9 @@ function EventosList() {
   }, []);
 
   const deletarEvento = () => {
+    const token = localStorage.getItem("token");
     if (eventoSelecionado) {
-      deletarEventoAPI(eventoSelecionado.id)
+      deletarEventoAPI(eventoSelecionado.id, token)
         .then((response) => {
           console.log("Evento deletado com sucesso!");
           setShowDeleteModal(false);
@@ -77,7 +77,7 @@ function EventosList() {
         <Button variant="danger" onClick={() => setShowDeleteModal(true)}>
           Excluir Evento
         </Button>{" "}
-        <Link to="/eventos/tipo_ingresso">
+        <Link to="/eventos/tipo_ingresso" params={{selecidonado:eventoSelecionado }}>
           <Button variant="secondary">Ingressos</Button>{" "}
         </Link>
       </div>

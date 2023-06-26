@@ -3,66 +3,187 @@ import axios from "axios";
 const clientApi = axios.create({
   baseURL: "http://localhost:8080/",
   headers: {
-    Authorization: `Bearer ${localStorage.getItem("token")}`,
-    "Content-Type": "application/x-www-form-urlencoded",
+    "Content-Type": "application/json",
     Accept: "application/json",
   },
 });
 
-
 export const registrarUsuarioAPI = (usuario) =>
   clientApi.post(`/usuarios`, usuario);
 
-export const deletarUsuarioAPI = (id) => clientApi.delete(`/usuarios/${id}`);
+export const deletarUsuarioAPI = (id, token) =>
+  clientApi.delete(`/usuarios/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
-export const getUsuarioAPI = (id) => clientApi.get(`/usuarios/${id}`);
+export const getUsuarioAPI = (id, token) =>
+  clientApi.get(`/usuarios/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
-export const getTodosUsuariosAPI = () => clientApi.get(`/usuarios`);
+export const getTodosUsuariosAPI = (token) =>
+  clientApi.get(`/usuarios`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
-export const registrarEventoAPI = (evento) =>
-  clientApi.post(`/eventos`, evento);
+export const registrarEventoAPI = (evento, token) =>
+  clientApi.post(`/eventos`, evento, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
-export const deletarEventoAPI = (id) => clientApi.delete(`/eventos/${id}`);
+export const deletarEventoAPI = (id, token) =>
+  clientApi.delete(`/eventos/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
-export const getEventoAPI = (id) => clientApi.get(`/eventos/${id}`);
+export const getEventoAPI = (id, token) =>
+  clientApi.get(`/eventos/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
-export const getTodosEventosAPI = () => clientApi.get(`/eventos`);
+export const getTodosEventosAPI = (token) =>
+  clientApi.get(`/eventos`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
-export const registrarCompraAPI = (compra) =>
-  clientApi.post(`/compras`, compra);
+export const registrarCompraAPI = (compra, token) =>
+  clientApi.post(`/compras`, compra, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
-export const deletarCompraAPI = (id) => clientApi.delete(`/compras/${id}`);
+export const deletarCompraAPI = (id, token) =>
+  clientApi.delete(`/compras/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
-export const getCompraAPI = (id) => clientApi.get(`/compras/${id}`);
+export const getCompraAPI = (id, token) =>
+  clientApi.get(`/compras/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
-export const getTodasComprasAPI = () => clientApi.get(`/compras`);
+export const getTodasComprasAPI = (token) =>
+  clientApi.get(`/compras`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
-export const registrarItemCompraAPI = (itemCompra) =>
-  clientApi.post(`/itens-compra`, itemCompra);
+export const registrarItemCompraAPI = (itemCompra, token) =>
+  clientApi.post(`/itens-compra`, itemCompra, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
-export const deletarItemCompraAPI = (id) =>
-  clientApi.delete(`/itens-compra/${id}`);
+export const deletarItemCompraAPI = (id, token) =>
+  clientApi.delete(`/itens-compra/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
-export const getItemCompraAPI = (id) => clientApi.get(`/itens-compra/${id}`);
+export const getItemCompraAPI = (id, token) =>
+  clientApi.get(`/itens-compra/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
-export const getTodosItensCompraAPI = () => clientApi.get(`/itens-compra`);
+export const getTodosItensCompraAPI = (token) =>
+  clientApi.get(`/itens-compra`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
-export const registrarTipoIngressoAPI = (tipoIngresso) =>
-  clientApi.post(`/tipo-ingressos`, tipoIngresso);
+export const registrarTipoIngressoAPI = (tipoIngresso, token) =>
+  clientApi.post(`/tipo-ingressos`, tipoIngresso, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
-export const deletarTipoIngressoAPI = (id) =>
-  clientApi.delete(`/tipo-ingressos/${id}`);
+export const deletarTipoIngressoAPI = (id, token) =>
+  clientApi.delete(`/tipo-ingressos/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
-export const getTipoIngressoAPI = (id) =>
-  clientApi.get(`/tipo-ingressos/${id}`);
+export const getTipoIngressoAPI = (id, token) =>
+  clientApi.get(`/tipo-ingressos/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
-export const getTodosTiposIngressoAPI = () => clientApi.get(`/tipo-ingressos`);
 
-export const registrarIngressoAPI = (ingresso) =>
-  clientApi.post(`/ingressos`, ingresso);
+export const getTodosTiposIngressoAPI = (token) =>
+  clientApi.get(`/tipo-ingressos`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
-export const deletarIngressoAPI = (id) => clientApi.delete(`/ingressos/${id}`);
+  export const getTodosTiposIngressoDoEventoAPI = (token,evento) =>
+  clientApi.get(`/tipo-ingressos/evento`, evento, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
-export const getIngressoAPI = (id) => clientApi.get(`/ingressos/${id}`);
+export const registrarIngressoAPI = (ingresso, token) =>
+  clientApi.post(`/ingressos`, ingresso, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
-export const getTodosIngressosAPI = () => clientApi.get(`/ingressos`);
+  export const atualizarTipoIngressoAPI = (id,ingresso, token) =>
+  clientApi.post(`/ingressos/${id}`, ingresso, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+
+export const deletarIngressoAPI = (id, token) =>
+  clientApi.delete(`/ingressos/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+export const getIngressoAPI = (id, token) =>
+  clientApi.get(`/ingressos/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+export const getTodosIngressosAPI = (token) =>
+  clientApi.get(`/ingressos`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });

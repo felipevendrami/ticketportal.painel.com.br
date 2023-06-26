@@ -3,13 +3,22 @@ import { Link, useParams } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { getEventoAPI } from "../Api/Service";
 import EventoForm from "../components/EventoForm";
+import axios from "axios";
 
 function EventoEditar() {
   const { id } = useParams();
   const [evento, setEvento] = useState(null);
 
   useEffect(() => {
-    getEventoAPI(id)
+    axios
+      .create({
+        baseURL: "http://localhost:8080/",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          "Content-Type": "application/json",
+        },
+      })
+      .get(`/eventos/${id}`)
       .then((response) => {
         setEvento(response.data);
       })
@@ -19,11 +28,10 @@ function EventoEditar() {
   }, [id]);
 
   const handleCancel = () => {
-    // Lógica de cancelar a edição do evento aqui
   };
 
   const handleSubmit = () => {
-    // Lógica de submissão do evento editado aqui
+    
   };
 
   if (!evento) {
