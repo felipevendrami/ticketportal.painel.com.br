@@ -28,13 +28,13 @@ function App() {
           <Route exact path="/eventos/novo_evento" component={NovoEvento} />
           <Route
             exact
-            path="/eventos/tipo_ingresso/:eventoid"
+            path="/eventos/tipo_ingresso/:id"
             component={TipoIngressoList}
           />
           <Route
             exact
             path="/eventos/tipo_ingresso/novo_tipo_ingresso"
-            component={NovoTipoIngresso}
+            component={NovoEvento}
           />
           <Route
             exact

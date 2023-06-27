@@ -77,7 +77,7 @@ function EventosList() {
         <Button variant="danger" onClick={() => setShowDeleteModal(true)}>
           Excluir Evento
         </Button>{" "}
-        <Link to="/eventos/tipo_ingresso" params={{selecidonado:eventoSelecionado }}>
+        <Link to={`/eventos/tipo_ingresso/${eventoSelecionado?.id}`}>
           <Button variant="secondary">Ingressos</Button>{" "}
         </Link>
       </div>

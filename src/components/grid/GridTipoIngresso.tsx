@@ -18,15 +18,16 @@ const columns: GridColDef[] = [
   { field: "loteNumero", headerName: "Número do Lote", width: 150 },
 ];
 
-function GridTipoIngresso() {
+function GridTipoIngresso(args) {
   const [rows, setRows] = React.useState<GridRowsProp>([]);
 
   React.useEffect(() => {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await getTodosTiposIngressoAPI(token,eventoid);
-        const dataWithId = response.data.map((row, index) => ({
+        const response = await getTodosTiposIngressoAPI(token);
+        const data = response.data.filter((row) => row.evento.idEvento == args.eventoid);
+        const dataWithId = data.map((row, index) => ({
           id: index + 1,
           ...row,
         }));
