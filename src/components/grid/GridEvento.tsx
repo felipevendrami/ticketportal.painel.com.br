@@ -17,14 +17,19 @@ function GridEvento({ eventos, onEventoSelecionado }) {
     { field: "id", headerName: "ID", width: 10 },
     { field: "evento", headerName: "Evento", width: 275 },
     { field: "local", headerName: "Local", width: 275 },
-    { field: "data", headerName: "Data", width: 150 },
+    { field: "data", headerName: "Data", width: 200 },
   ];
 
   const rows: GridRowsProp = eventos.map((evento) => ({
     id: evento.idEvento,
     evento: evento.titulo,
     local: evento.local,
-    data: evento.dataEvento,
+    //data: evento.dataEvento,
+    data: new Date(evento.dataEvento).toLocaleTimeString("pt-BR", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    }),
   }));
 
   const handleEventoSelection = (params) => {

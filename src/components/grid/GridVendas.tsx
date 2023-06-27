@@ -7,8 +7,8 @@ import { Link } from "react-router-dom";
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID", width: 10 },
   { field: "cliente", headerName: "Cliente", width: 250 },
-  { field: "data", headerName: "Data Venda", width: 150 },
-  { field: "valor", headerName: "Valor Total", width: 100 },
+  { field: "data", headerName: "Data Venda", width: 250 },
+  { field: "valor", headerName: "Valor Total", width: 150 },
   { field: "situacao", headerName: "Situação", width: 200 },
 ];
 
@@ -26,7 +26,7 @@ function GridVendas({ handlePedidoSelecionado }) {
         const data = response.data.map((compra, index) => ({
           id: compra.id || index,
           cliente: compra.usuario.nome,
-          data: new Date(compra.dataCompra).toLocaleTimeString("en-US", {
+          data: new Date(compra.dataCompra).toLocaleTimeString("pt-BR", {
             year: "numeric",
             month: "2-digit",
             day: "2-digit",
