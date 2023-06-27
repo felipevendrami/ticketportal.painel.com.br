@@ -11,7 +11,7 @@ import { useState } from "react";
 
 const columns: GridColDef[] = [
   { field: "idTipoIngresso", headerName: "ID", width: 10 },
-  { field: "evento.titulo", headerName: "Evento", width: 250 },
+  { field: "evento", headerName: "Evento", width: 250 },
   { field: "titulo", headerName: "Titulo", width: 250 },
   { field: "valorNormal", headerName: "Valor Normal", width: 110 },
   { field: "quantidade", headerName: "Quantidade", width: 110 },
@@ -40,9 +40,10 @@ function GridTipoIngresso(args) {
         const dataWithId = data.map((row, index) => ({
           id: index + 1,
           ...row,
+          evento: evento.titulo,
         }));
         setRows(dataWithId);
-        console.log("Evento: " + evento);
+        console.log("Evento: " + evento.titulo);
       } catch (error) {
         console.log("Error fetching data:", error);
       }

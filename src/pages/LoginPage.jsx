@@ -41,7 +41,6 @@ function LoginPage() {
   };
 
   return (
-    <Container customClass="center">
       <Form className={styles.form} onSubmit={handleSubmit}>
         <h1>Login</h1>
         <Form.Group className={styles.form_group} controlId="formBasicEmail">
@@ -66,7 +65,6 @@ function LoginPage() {
           Entrar
         </Button>
       </Form>
-    </Container>
   );
 }
 
