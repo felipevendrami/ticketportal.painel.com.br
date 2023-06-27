@@ -1,12 +1,36 @@
-import { Link } from "react-router-dom";
-import React, { useState } from "react";
+import { Link, useHistory, useParams } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import { registrarTipoIngressoAPI } from "../Api/Service";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
+import axios from "axios";
 
 function NovoTipoIngresso() {
+
+  const { id } = useParams();
+  const [evento, setEvento] = useState("");
+  const history = useHistory();
+
+  useEffect(() => {
+      console.log(localStorage.getItem("token"));
+      axios.create({
+          baseURL: "http://localhost:8080/",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            "Content-Type": "application/json",
+          },
+        })
+        .get(`/eventos/${id}`)
+        .then((response) => {
+          setEvento(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+  }, []);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -15,9 +39,9 @@ function NovoTipoIngresso() {
     const tipoIngresso = {
       evento: evento,
       titulo: titulo,
-      lote: lote,
-      qntIngressos: qntIngressos,
-      valorBase: valorBase,
+      loteNumero: lote,
+      quantidade: qntIngressos,
+      valorNormal: valorBase,
       desconto: desconto,
     };
 
@@ -49,16 +73,25 @@ function NovoTipoIngresso() {
     "desconto": null,
     "loteNumero": 1
   }
-      */
-
+    */
+/*
     try {
       const response = await registrarTipoIngressoAPI(tipoIngresso, token);
     } catch (error) {
       console.log("Error:", error);
-    }
+    }*/
+
+    registrarTipoIngressoAPI(tipoIngresso, token)
+    .then(() => {
+      history.push(`/eventos/tipo_ingresso/${id}`);
+    })
+    .catch((error) => {
+      // Tratar erros na criação do evento
+      console.error(error);
+    });
+
   };
 
-  const [evento, setEvento] = useState("");
   const [titulo, setTitulo] = useState("");
   const [lote, setLote] = useState("");
   const [qntIngressos, setQntIngressos] = useState("");
@@ -74,7 +107,7 @@ function NovoTipoIngresso() {
           <Form.Group as={Col} controlId="formGridEvento">
             <Form.Label>Evento:</Form.Label>
             <Form.Control
-              value={evento}
+              value={evento.titulo}
               id="evento"
               type="text"
               onChange={(e) => setEvento(e.target.value)}
@@ -141,7 +174,7 @@ function NovoTipoIngresso() {
             />
           </Form.Group>
         </Row>
-        <Link to="/eventos/tipo_ingresso">
+        <Link to={`/eventos/tipo_ingresso/${id}`}>
           <Button variant="warning">Voltar</Button>{" "}
         </Link>
         <Button variant="success" type="submit">

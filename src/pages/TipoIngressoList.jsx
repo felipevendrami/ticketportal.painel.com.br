@@ -12,7 +12,8 @@ function TipoIngressoList() {
       <h3>Ingressos do Evento</h3>
       <hr />
       <div>
-        <Link to={"/eventos/tipo_ingresso/novo_tipo_ingresso"}>
+        <Link to={`/eventos/tipo_ingresso/${id}/novo_tipo_ingresso`}
+        idEvento={id}>
           <Button variant="success">Novo Lote</Button>{" "}
         </Link>
         <Link to={`/eventos/tipo_ingresso/alterar_tipo_ingresso/`}>

@@ -5,8 +5,13 @@ import {
   GridRowsProp,
   GridValueGetterParams,
 } from "@mui/x-data-grid";
+import { useState } from "react";
 
 function GridEvento({ eventos, onEventoSelecionado }) {
+  const [paginationModel, setPaginationModel] = useState({
+    pageSize: 6,
+    page: 0,
+  });
 
   const columns: GridColDef[] = [
     { field: "id", headerName: "ID", width: 10 },
@@ -29,7 +34,13 @@ function GridEvento({ eventos, onEventoSelecionado }) {
 
   return (
     <div style={{ height: "100%", width: "100%" }}>
-      <DataGrid columns={columns} rows={rows} onRowClick={handleEventoSelection} />
+      <DataGrid
+        columns={columns}
+        rows={rows}
+        onRowClick={handleEventoSelection}
+        paginationModel={paginationModel}
+        onPaginationModelChange={setPaginationModel}
+      />
     </div>
   );
 }

@@ -14,6 +14,10 @@ const columns: GridColDef[] = [
 
 function GridVendas({ handlePedidoSelecionado }) {
   const [rows, setRows] = useState([]);
+  const [paginationModel, setPaginationModel] = useState({
+    pageSize: 6,
+    page: 0,
+  });
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -49,6 +53,8 @@ function GridVendas({ handlePedidoSelecionado }) {
         columns={columns}
         checkboxSelection
         onRowClick={handleRowClick}
+        paginationModel={paginationModel}
+        onPaginationModelChange={setPaginationModel}
       />
     </div>
   );

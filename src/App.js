@@ -33,8 +33,8 @@ function App() {
           />
           <Route
             exact
-            path="/eventos/tipo_ingresso/novo_tipo_ingresso"
-            component={NovoEvento}
+            path="/eventos/tipo_ingresso/:id/novo_tipo_ingresso"
+            component={NovoTipoIngresso}
           />
           <Route
             exact
